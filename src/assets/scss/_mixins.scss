@@ -1,0 +1,36 @@
+// Mixins
+// --------------------------------------------------
+
+// Utilities
+@import "flat-ui/mixins/hide-text.scss";
+@import "flat-ui/mixins/opacity.scss";
+@import "flat-ui/mixins/image.scss";
+// @import "flat-ui/mixins/reset-filter.scss";
+@import "flat-ui/mixins/resize.scss";
+@import "flat-ui/mixins/responsive-visibility.scss";
+@import "flat-ui/mixins/size.scss";
+@import "flat-ui/mixins/tab-focus.scss";
+@import "flat-ui/mixins/text-emphasis.scss";
+@import "flat-ui/mixins/text-overflow.scss";
+@import "flat-ui/mixins/vendor-prefixes.scss";
+@import "flat-ui/mixins/background-clip.scss";
+@import "flat-ui/mixins/breakpoints.scss";
+
+// Components
+@import "flat-ui/mixins/buttons.scss";
+@import "flat-ui/mixins/select.scss";
+@import "flat-ui/mixins/pagination.scss";
+@import "flat-ui/mixins/nav-divider.scss";
+@import "flat-ui/mixins/forms.scss";
+@import "flat-ui/mixins/switches.scss";
+
+// Skins
+@import "flat-ui/mixins/background-variant.scss";
+@import "flat-ui/mixins/border-radius.scss";
+@import "flat-ui/mixins/gradients.scss";
+
+// Layout
+@import "flat-ui/mixins/clearfix.scss";
+@import "flat-ui/mixins/center-block.scss";
+@import "flat-ui/mixins/navbar-vertical-align.scss";
+@import "flat-ui/mixins/grid.scss";
