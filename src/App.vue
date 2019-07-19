@@ -1,114 +1,134 @@
 <template>
   <div id="app">
     <div class="container">
-      <div id="app-side">
-          <h1 id="logo">
-            <i class="logo-bars"></i>
-            <span class="logo-text">Burger Generator</span>
-          </h1>
+      <div class="app-side">
+        <h1 class="logo">
+          <i class="logo-bars"></i>
+          <span class="logo-text">Burger Generator</span>
+        </h1>
 
-          <div id="burger-options">
-            <div class="options-field">
-              <label for="width-slider">Bar Width</label>
+        <div class="burger-options">
+          <div class="options-field">
+            <label for="width-slider">Bar Width</label>
 
-              <div class="input-wrapper input-wrapper--slider">
-                <div id="width-slider"></div>
-                <input type="number" class="form-control option-sm" v-model="barWidth">
-              </div>
+            <div class="input-wrapper input-wrapper--slider">
+              <div id="width-slider"></div>
+              <input type="number" class="form-control option-sm" v-model="barWidth">
             </div>
+          </div>
 
-            <div class="options-field">
-              <label for="width-slider">Bar Height</label>
+          <div class="options-field">
+            <label for="width-slider">Bar Height</label>
 
-              <div class="input-wrapper input-wrapper--slider">
-                <div id="height-slider"></div>
-                <input type="number" class="form-control option-sm" v-model="barHeight">
-              </div>
+            <div class="input-wrapper input-wrapper--slider">
+              <div id="height-slider"></div>
+              <input type="number" class="form-control option-sm" v-model="barHeight">
             </div>
+          </div>
 
-            <div class="options-field">
-              <label for="width-slider">Bar Gap</label>
+          <div class="options-field">
+            <label for="width-slider">Bar Gap</label>
 
-              <div class="input-wrapper input-wrapper--slider">
+            <div class="input-wrapper input-wrapper--slider">
 
-                <div id="gap-slider"></div>
-                <input type="number" class="form-control option-sm" v-model="barGap">
-              </div>
+              <div id="gap-slider"></div>
+              <input type="number" class="form-control option-sm" v-model="barGap">
             </div>
+          </div>
 
+          <div class="options-field">
+            <label>Show Button Label Text?</label>
+
+            <div class="input-wrapper">
+              <toggle-button class="options-switch" :color="primaryColor" v-model="showBtnText" />
+            </div>
+          </div>
+
+          <template v-if="showBtnText">
             <div class="options-field">
-              <label>Show Button Label Text?</label>
+              <label for="button-text">Label Text</label>
 
               <div class="input-wrapper">
-                <toggle-button class="options-switch" :color="primaryColor" v-model="showBtnText" />
+                <input id="button-text" type="text" class="form-control" v-model="btnText">
               </div>
             </div>
 
-            <template v-if="showBtnText">
-              <div class="options-field">
-                <label for="button-text">Label Text</label>
+            <div class="options-field">
+              <label for="font-size">Font Size</label>
 
-                <div class="input-wrapper">
-                  <input id="button-text" type="text" class="form-control" v-model="btnText">
-                </div>
+              <div class="input-wrapper">
+                <input id="font-size" type="number" class="form-control" v-model="fontSize">
+
+                <label for="font-unit" class="sr-only">Font Size Unit</label>
+                <select id="font-unit" class="form-control option-sm" v-model="fontSizeUnit">
+                  <option value="rem">rem</option>
+                  <option value="px">px</option>
+                  <option value="em">em</option>
+                </select>
               </div>
+            </div>
 
-              <div class="options-field">
-                <label for="font-size">Font Size</label>
+            <div class="options-field">
+              <label for="font-weight">Font Weight</label>
 
-                <div class="input-wrapper">
-                  <input id="font-size" type="number" class="form-control" v-model="fontSize">
-
-                  <label for="font-unit" class="sr-only">Font Size Unit</label>
-                  <select id="font-unit" class="form-control option-sm" v-model="fontSizeUnit">
-                    <option value="rem">rem</option>
-                    <option value="px">px</option>
-                    <option value="em">em</option>
-                  </select>
-                </div>
+              <div class="input-wrapper">
+                <input id="font-weight" type="number" class="form-control" v-model="fontWeight">
               </div>
+            </div>
 
-              <div class="options-field">
-                <label for="font-weight">Font Weight</label>
+            <div class="options-field">
+              <label for="text-space">Text Space</label>
 
-                <div class="input-wrapper">
-                  <input id="font-weight" type="number" class="form-control" v-model="fontWeight">
-                </div>
+              <div class="input-wrapper">
+                <input id="text-space" type="number" class="form-control" v-model="textSpace">
+
+                <label for="font-unit" class="sr-only">Test Space Unit</label>
+                <select id="font-unit" class="form-control option-sm" v-model="textSpaceUnit">
+                  <option value="px">px</option>
+                  <option value="rem">rem</option>
+                  <option value="em">em</option>
+                </select>
               </div>
+            </div>
+          </template>
+        </div>
 
-              <div class="options-field">
-                <label for="text-space">Text Space</label>
+        <div class="burger-export">
+          <a href="#modal-export" id="btn-export" class="btn btn-embossed btn-primary modaal" data-modaal-type="inline" data-modaal-animation="fade">
+            Export
+          </a>
+        </div>
 
-                <div class="input-wrapper">
-                  <input id="text-space" type="number" class="form-control" v-model="textSpace">
-
-                  <label for="font-unit" class="sr-only">Test Space Unit</label>
-                  <select id="font-unit" class="form-control option-sm" v-model="textSpaceUnit">
-                    <option value="px">px</option>
-                    <option value="rem">rem</option>
-                    <option value="em">em</option>
-                  </select>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <div id="burger-export">
-            <a href="#modal-export" id="btn-export" class="btn btn-embossed btn-primary modaal" data-modaal-type="inline" data-modaal-animation="fade">
-              Export
-            </a>
-          </div>
+        <button type="button" class="btn-back" @click="menuClick">
+          <i class="far fa-arrow-left"></i>
+          <span class="sr-only">Close menu</span>
+        </button>
       </div>
 
-      <div id="app-main">
-        <button class="btn-menu" type="button" @click="menuClick" :style="{ minHeight: ((this.barHeight * 3) + (this.barGap * 2) + 20) + 'px' }">
-          <span class="click-me" :style="{ left: (-60 + barWidth / 2) + 'px' }">
-            Click me!
-            <i class="far fa-level-down"></i>
-          </span>
-          <i class="btn-menu__bars" :style="barStyles"></i>
-          <span class="btn-menu__text" :style="textStyles" v-if="showBtnText">{{btnText}}</span>
-        </button>
+      <div class="app-main">
+        <div class="button-container">
+          <button class="btn-menu" type="button" @click="menuClick" :style="{ minHeight: ((this.barHeight * 3) + (this.barGap * 2) + 20) + 'px' }">
+            <span class="click-me" :style="{ left: (-60 + barWidth / 2) + 'px' }">
+              Click me!
+              <i class="far fa-level-down"></i>
+            </span>
+            <i class="btn-menu__bars" :style="barStyles"></i>
+            <span class="btn-menu__text" :style="textStyles" v-if="showBtnText">{{btnText}}</span>
+          </button>
+        </div>
+
+        <div class="app-donate">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="5CRS49FSTPU7S" />
+
+            <button type="submit" class="btn btn-icon-primary">
+              <i class="far fa-coffee-togo"></i>
+              Buy Me a Coffee
+            </button>
+            <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
       </div>
 
       <div id="modal-export" style="display:none;">
