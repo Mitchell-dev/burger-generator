@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Burger Generator</title>
-
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="/static/js/flat-ui-slider.min.js"></script>
-    <script src="/static/js/modaal.min.js"></script>
+    <meta name="description" content="Quickly generate SCSS/JS/HTML for a hamburger menu button"/>
+    
+    <link rel="shortcut icon" href="<%= BASE_URL %>favicon.png">
 
     <meta name="propeller" content="8712557944a4840679c8e912cf4a8b66">
 
@@ -24,6 +22,9 @@
     </script>
   </head>
   <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

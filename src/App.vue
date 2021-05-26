@@ -139,9 +139,9 @@
         </nav>
         <div class="tab-content">
           <div v-show="currentTab === 'scss'">
-            <prism class="code-block" language="scss" :code="scssCode"></prism>
+            <prism class="code-block" language="scss">{{ scssCode }}</prism>
 
-            <button class="btn btn-embossed btn-primary" v-clipboard="scssCode" v-clipboard:error="clipboardErrorHandler">
+            <button class="btn btn-embossed btn-primary" v-clipboard="() => scssCode" v-clipboard:error="clipboardErrorHandler">
               Copy to Clipboard
             </button>
           </div>
@@ -165,7 +165,7 @@
           </div>
           <div v-show="currentTab === 'html'">
             <prism class="code-block" language="html" :code="htmlCode"></prism>
-            <button class="btn btn-embossed btn-primary" v-clipboard="htmlCode" v-clipboard:error="clipboardErrorHandler">
+            <button class="btn btn-embossed btn-primary" v-clipboard="() => htmlCode" v-clipboard:error="clipboardErrorHandler">
               Copy to Clipboard
             </button>
           </div>
@@ -179,7 +179,9 @@
 import Vue from 'vue'
 import Clipboard from 'v-clipboard'
 import { ToggleButton } from 'vue-js-toggle-button'
-import Prism from 'vue-prismjs'
+import Prism from 'vue-prism-component'
+import $ from 'jquery'
+import 'flat-ui/js/jquery-ui-1.10.3.custom.min.js';
 
 Vue.use(Clipboard)
 
@@ -280,20 +282,24 @@ for (var i = 0; i < btnMenu.length; i++) {
               value: (this.barHeight * 3) + (this.barGap * 2) + 'px'
             },
             {
-              property: 'background-color',
-              value: 'transparent'
-            },
-            {
-              property: 'color',
-              value: 'inherit'
-            },
-            {
               property: 'padding-left',
               value: '0'
             },
             {
               property: 'padding-right',
               value: '0'
+            },
+            {
+              property: 'border',
+              value: 'none'
+            },
+            {
+              property: 'background-color',
+              value: 'transparent'
+            },
+            {
+              property: 'color',
+              value: 'inherit'
             },
             {
               property: 'cursor',
@@ -356,7 +362,7 @@ for (var i = 0; i < btnMenu.length; i++) {
                 },
                 {
                   property: 'background-color',
-                  value: '$brand-primary'
+                  value: '$primary'
                 },
                 {
                   property: 'transition',
@@ -393,7 +399,7 @@ for (var i = 0; i < btnMenu.length; i++) {
                     },
                     {
                       property: 'background-color',
-                      value: '$brand-primary'
+                      value: '$primary'
                     },
                     {
                       property: 'transition',
@@ -463,15 +469,16 @@ for (var i = 0; i < btnMenu.length; i++) {
       return this.propertiesLoop(scss)
     },
     htmlCode: function () {
+      var html
       if ( this.showBtnText ) {
-        var html = `<button class="btn-menu" type="button">
-    <i class="btn-menu__bars"></i>
+        html = `<button class="btn-menu" type="button">
+    <i class="btn-menu__bars" aria-hidden="true"></i>
     <span class="btn-menu__text">`+this.btnText+`</span>
 </button>`
       } else {
-        var html = `<button class="btn-menu" type="button">
-    <i class="btn-menu__bars"></i>
-    <span class="sr-only">Menu</span>
+        html = `<button class="btn-menu" type="button">
+    <i class="btn-menu__bars" aria-hidden="true"></i>
+    <span class="visually-hidden">Menu</span>
 </button>`
       }
 
@@ -565,16 +572,9 @@ for (var i = 0; i < btnMenu.length; i++) {
 
       return properties
     },
-    clipboardErrorHandler ({ value, event }) {
+    clipboardErrorHandler ({ value }) {
       console.log('error', value)
     }
   }
 }
 </script>
-
-<style src="@/assets/scss/style.scss" lang="scss"></style>
-<style lang="scss">
-  .button-test {
-    width: var(barwidth, 30);
-  }
-</style>
